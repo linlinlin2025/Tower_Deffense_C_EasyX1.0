@@ -12,11 +12,11 @@
 using namespace std;
 
   
-#define width 1024
-#define height 768
-#define Game_width 840
-#define Game_height 600
-#define Gap 40
+#define width 1024 //窗口宽度
+#define height 768//窗口高度
+#define Game_width 840//游戏窗口宽度
+#define Game_height 600//游戏窗口高度
+#define Gap 40//方格间距
 
 int random_num;
 
