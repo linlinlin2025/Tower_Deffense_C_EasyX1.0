@@ -123,7 +123,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Game_Main.cpp" />
+    <ClCompile Include="game_main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="game_main.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
