@@ -20,16 +20,55 @@ using namespace std;
 #define Game_height 600//游戏窗口高度
 #define Gap 40//方格间距
 
-extern int random_num;
+extern int random_num;//随机地图选择变量
 
 struct Enemy_BasePos {//敌方基地单个坐标结构体
 	int x;
 	int y;
 };
 
-void Game_Init(void);//初始化EasyX窗口、加载资源、初始化游戏数据（得分、难度、最高记录）、生成初始预览防御单位
-void Game_Loop(void);// 游戏主循环：处理输入→调用各模块更新→调用绘制函数→控制帧率
-void Game_Quit(void);//保存最高分、释放资源、关闭窗口
-void Game_Map(int random_num);//绘制游戏地图
-void Game_SidebarData(void);//侧边栏数据绘制函数
+/**
+ * @biref :用于游戏界面初始化
+ * @details :初始化EasyX窗口、加载资源、初始化游戏数据（得分、难度、最高记录）、生成初始预览防御单位
+ * @param :无
+ * @return :无
+ */
+
+void Game_Init(void);
+
+/**
+ * @biref :游戏主循环
+ * @details :处理输入→调用各模块更新→调用绘制函数→控制帧率
+ * @param :无
+ * @return :无
+ */
+
+void Game_Loop(void);
+
+/**
+ * @biref :结束游戏
+ * @details :保存最高分(调用相应函数)、释放资源、关闭窗口
+ * @param :无
+ * @return :无
+ */
+
+void Game_Quit(void);
+
+/**
+ * @brief :三种游戏地图
+ * @details :通过参数选择地图，红方块是敌方基地，蓝色是我方基地，棕色是防御单位可部署区域,深红色为不可通行区域
+ * @param :随机值 random_num (1-3)
+ * @retval :无
+ */
+
+void Game_Map(int random_num);
+
+/**
+ * @brief :侧边栏数据绘制函数
+ * @details :包括积分、金币、生命值、等级等信息显示
+ * @param :无
+ * @retval :无
+ */
+
+void Game_SidebarData(void);
 #endif
