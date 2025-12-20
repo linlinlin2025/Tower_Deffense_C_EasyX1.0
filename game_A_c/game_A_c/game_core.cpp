@@ -10,6 +10,9 @@
 #include "game_core.h"
 using namespace std;
 
+Enemy_BasePos Enemy_BasePosMap1[16] = {20,20,60,20,780,20,820,20,20,60,60,60,780,60,820,60,20,540,60,540,780,540,820,540,20,580,60,580,780,580,820,580 };
+Enemy_BasePos Enemy_BasePosMap2[5] = {180,20,300,20,420,20,540,20,660,20};
+Enemy_BasePos Enemy_BasePosMap3[20] = {140,20,700,20,60,60,100,60,740,60,780,60,60,100,780,100,20,140,820,140,20,460,820,460,60,500,780,500,60,540,100,540,740,540,780,540,140,580,700,580 };
 void Game_Init()//³õÊ¼»¯EasyX´°¿Ú¡¢¼ÓÔØ×ÊÔ´¡¢³õÊ¼»¯ÓÎÏ·Êı¾İ£¨µÃ·Ö¡¢ÄÑ¶È¡¢×î¸ß¼ÇÂ¼£©¡¢Éú³É³õÊ¼Ô¤ÀÀ·ÀÓùµ¥Î» 
 {
 	setbkcolor(RGB(237, 231, 216));
@@ -34,15 +37,15 @@ void Game_Init()//³õÊ¼»¯EasyX´°¿Ú¡¢¼ÓÔØ×ÊÔ´¡¢³õÊ¼»¯ÓÎÏ·Êı¾İ£¨µÃ·Ö¡¢ÄÑ¶È¡¢×î¸ß¼ÇÂ
 		setlinestyle(PS_SOLID, 1);//ÉèÖÃÏßÌõÎªÊµÏß£¬¿í¶ÈÎª3
 		line(i, 0, i, Game_height);
 	}
-	Game_Map(random_num);
-	Game_SidebarData();
+	Game_Map(random_num);//Ëæ»úµØÍ¼»æÖÆ
+	Game_SidebarData();//ÓÎÏ·²à±ßÀ¸ÏÔÊ¾Êı¾İ
 }
 void Game_Loop()// ÓÎÏ·Ö÷Ñ­»·£º´¦ÀíÊäÈë¡úµ÷ÓÃ¸÷Ä£¿é¸üĞÂ¡úµ÷ÓÃ»æÖÆº¯Êı¡ú¿ØÖÆÖ¡ÂÊ 
 {
 
 }
 
-void Game_Quit()//±£´æ×î¸ß·Ö¡¢ÊÍ·Å×ÊÔ´¡¢¹Ø±Õ´°¿Ú
+void Game_Quit()//±£´æ×î¸ß·Ö(µ÷ÓÃÏàÓ¦º¯Êı)¡¢ÊÍ·Å×ÊÔ´¡¢¹Ø±Õ´°¿Ú
 {
 
 	//¹Ø±Õ»­²¼
@@ -191,9 +194,18 @@ void Game_Map(int random_num)
 
 void Game_SidebarData()//²à±ßÀ¸Êı¾İ»æÖÆº¯Êı
 {
-	//TCHAR Game_ScoreStr[20] = _T("»ı·Ö£º");
-	//_stprintf_s(Game_ScoreStr, _T("%d"), 1024);		// ¸ß°æ±¾ VC ÍÆ¼öÊ¹ÓÃ _stprintf_s º¯Êı
-	//outtextxy(900, 650, Game_ScoreStr);
-	// Êä³ö×Ö·û´®£¨MBCS ×Ö·û¼¯£©
-
+	TCHAR Game_ScoreStr[7] = _T("»ı·Ö£º"), Game_CoinStr[7] = _T("½ğ±Ò£º"), CurrentHPStr[9] = _T("ÉúÃüÖµ£º"), Current_LevelStr[7] = _T("µÈ¼¶£º");
+	settextcolor(BLACK);
+	LOGFONT f;
+	gettextstyle(&f);						// »ñÈ¡µ±Ç°×ÖÌåÉèÖÃ
+	f.lfHeight = 23;						// ÉèÖÃ×ÖÌå¸ß¶ÈÎª 20
+	f.lfWeight = FW_BOLD;					// ÉèÖÃ×ÖÌåÎª´ÖÌå
+	_tcscpy_s(f.lfFaceName, _T("Î¢ÈíÑÅºÚ"));		// ÉèÖÃ×ÖÌåÎª¡°ºÚÌå¡±
+	f.lfQuality = ANTIALIASED_QUALITY;		// ÉèÖÃÊä³öĞ§¹ûÎª¿¹¾â³İ  
+	settextstyle(&f);						// ÉèÖÃ×ÖÌåÑùÊ½
+	outtextxy(860, 20, Game_ScoreStr);
+	outtextxy(860, 50, Game_CoinStr);
+	outtextxy(860, 80, CurrentHPStr);
+	outtextxy(860, 110, Current_LevelStr);
+	//Êı¾İÏÔÊ¾²¿·ÖºóĞø²¹³ä
 }

@@ -14,7 +14,6 @@ using namespace std;
 
 int random_num;
 
-
 int main() {
 	
 	// 在程序开始时设置随机种子
@@ -22,7 +21,7 @@ int main() {
 	random_num = (int)rand()%3+1;  // 生成1到3之间的随机数
 	initgraph(width, height, EX_DBLCLKS);
 	Game_Init();
-	Game_Map(random_num);
+
 
 	Game_Quit();
 	return 0;

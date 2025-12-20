@@ -22,10 +22,14 @@ using namespace std;
 
 extern int random_num;
 
-void Game_Init();//初始化EasyX窗口、加载资源、初始化游戏数据（得分、难度、最高记录）、生成初始预览防御单位
-void Game_Loop();// 游戏主循环：处理输入→调用各模块更新→调用绘制函数→控制帧率
-void Game_Quit();//保存最高分、释放资源、关闭窗口
+struct Enemy_BasePos {//敌方基地单个坐标结构体
+	int x;
+	int y;
+};
+
+void Game_Init(void);//初始化EasyX窗口、加载资源、初始化游戏数据（得分、难度、最高记录）、生成初始预览防御单位
+void Game_Loop(void);// 游戏主循环：处理输入→调用各模块更新→调用绘制函数→控制帧率
+void Game_Quit(void);//保存最高分、释放资源、关闭窗口
 void Game_Map(int random_num);//绘制游戏地图
-void Game_SidebarData();//侧边栏数据绘制函数
+void Game_SidebarData(void);//侧边栏数据绘制函数
 #endif
-#pragma once
