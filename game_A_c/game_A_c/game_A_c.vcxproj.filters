@@ -18,9 +18,15 @@
     <ClCompile Include="game_main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="game_core.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_main.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game_core.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
