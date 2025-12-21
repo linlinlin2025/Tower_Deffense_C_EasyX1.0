@@ -8,6 +8,18 @@ int Game_Coin = 100;     // 金币，初始为100
 int CurrentHP = 100;     // 血量，初始为100
 int Current_Level = 1;   // 等级，初始为1
 
+void GameButton() {
+Interface1(280, 200, 280, 100, \_T("开始游戏")); //左上（280，200）右下（560，300）
+
+	Interface1(280, 380, 280, 100, \_T("游戏规则"));//左上（280，380）右下（560，480）
+
+	Interface2(10, 10, 100, 50, \_T("返回"));//左上（10，10）右下（110，60）
+
+
+
+
+}
+
 //图一，游戏主界面，开始游戏，游戏规则按钮
 void Interface1(int x, int y, int w, int h, const TCHAR* text)  // 改为const TCHAR*
 {
