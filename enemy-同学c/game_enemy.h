@@ -1,5 +1,5 @@
-#ifndef ENEMY_H
-#define ENEMY_H
+#ifndef GAME_ENEMY_H
+#define GAME_ENEMY_H
 #include <graphics.h>		
 #include <conio.h>
 #include <stdio.h>
