@@ -71,7 +71,7 @@ void DrawGameRules(int x, int y, int lineHeight)
 {
  	// 设置文本样式（游戏规则专用）
  	setbkmode(TRANSPARENT);
- 	settextstyle(18, 0, _T("微软雅黑")); // 字体大小适中，便于阅读
+ 	settextstyle(21, 0, _T("微软雅黑")); // 字体大小适中，便于阅读
  	settextcolor(BLACK);
 
  	// 按行拆分游戏规则（每行长度适配界面，避免超出显示范围）
