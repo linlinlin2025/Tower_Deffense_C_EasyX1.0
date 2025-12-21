@@ -2,6 +2,12 @@
 #include<easyx.h>  // 必须包含EasyX头文件
 #include<conio.h>  // 包含_getch()的头文件
 using namespace std;
+
+int Game_Score = 0;      // 积分,初始为0
+int Game_Coin = 100;     // 金币，初始为100
+int CurrentHP = 100;     // 血量，初始为100
+int Current_Level = 1;   // 等级，初始为1
+
 //图一，游戏主界面，开始游戏，游戏规则按钮
 void Interface1(int x, int y, int w, int h, const TCHAR* text)  // 改为const TCHAR*
 {
