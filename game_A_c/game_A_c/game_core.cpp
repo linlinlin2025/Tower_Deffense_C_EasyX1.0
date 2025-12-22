@@ -46,6 +46,7 @@ void Game_Init()
 	}
 	Game_Map(random_num);//随机地图绘制
 	Game_SidebarData();//游戏侧边栏显示数据
+
 }
 /**
  * @biref :游戏主循环
@@ -206,9 +207,10 @@ void Game_Map(int random_num)
 			fillrectangle(Game_width - Gap, Game_height - i - Gap, Game_width, Game_height - i);//右下侧
 		}
 		setfillcolor(RGB(196, 43, 28));//红色敌方基地
+		int j = 0;
 		for (int i = 3 * Gap; i >= 0; i -= Gap)
 		{
-			static int j = 0;
+			
 			fillrectangle(i, j, i + Gap, j + Gap);//左上角
 			fillrectangle(Game_width - i - Gap, j, Game_width - i, j + Gap);//右上角
 			fillrectangle(i, Game_height - Gap - j, i + Gap, Game_height - j);//左下角
