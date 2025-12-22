@@ -1,72 +1,3 @@
-//#include <iostream>
-//#include <vector>
-//#include <string>
-//#include <algorithm>
-//#include <cmath>
-//#include <map>
-//#include <set>
-//#include <graphics.h>
-//#include <conio.h>
-//#include <cstdlib>  // 包含 rand() 和 srand()
-//#include <ctime>    // 包含 time()
-//#include "game_core.h"
-//#include "game_rule.h"
-//using namespace std;
-//
-//
-//
-//int random_num;
-//ExMessage msg;
-//
-//
-//int main() 
-//{
-//	
-//	// 在程序开始时设置随机种子
-//	srand(time(NULL));
-//	random_num = (int)rand()%3+1;  // 生成1到3之间的随机数
-//	initgraph(width, height, EX_DBLCLKS);
-//	setbkcolor(RGB(237, 231, 216));
-//	cleardevice();//用白色清屏
-//	DrawText1();
-//	int is_Start = 0; // 是否开始游戏标志
-//	while (!is_Start)
-//	{
-//		if (peekmessage(&msg, EX_MOUSE))
-//		{
-//
-//			if ((msg.message == WM_LBUTTONDOWN) && msg.x >= 280 && msg.x <= 560 && msg.y >= 200 && msg.y <= 300)
-//			{
-//				is_Start = 1; // 点击“开始游戏”按钮，退出循环
-//			}
-//			else if ((msg.message == WM_LBUTTONDOWN) && msg.x >= 280 && msg.x <= 560 && msg.y >= 380 && msg.y <= 480)
-//			{
-//				cleardevice();//用白色清屏
-//				DrawText2();//调用第二幕函数
-//				int is_Return = 0; // 是否返回主界面标志
-//				while (!is_Return && !is_Start)
-//				{
-//					ExMessage rule_msg;
-//					if (peekmessage(&rule_msg, EX_MOUSE))
-//					{
-//						if ((rule_msg.message == WM_LBUTTONDOWN) && rule_msg.x >= 650 && rule_msg.x <= 730 && rule_msg.y >= 500 && rule_msg.y <= 560)
-//						{
-//							cleardevice();//用白色清屏
-//							is_Return = 1; // 点击“返回”按钮，返回主界面
-//							DrawText1();//返回第一幕
-//						}
-//					}
-//				}
-//			}
-//		}
-//	}
-//	cleardevice();//用白色清屏
-//	Game_Init();
-//
-//
-//	Game_Quit();
-//	return 0;
-//}
 #include <iostream>
 #include <vector>
 #include <string>
@@ -169,7 +100,7 @@ int main() {
                 // 检测窗口关闭事件
                 ExMessage temp_msg;
                 if (peekmessage(&temp_msg)) {
-                    // 判断消息是否是“窗口关闭”（WM_CLOSE是Windows系统的窗口关闭消息）
+                    // 判断消息是否是“窗口关闭”
                     if (temp_msg.message == WM_CLOSE) {
                         goto GAME_EXIT;
                     }
