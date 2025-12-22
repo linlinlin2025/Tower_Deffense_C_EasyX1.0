@@ -39,11 +39,13 @@ void Game_Init(void);
 /**
  * @biref :游戏主循环
  * @details :处理输入→调用各模块更新→调用绘制函数→控制帧率
- * @param :无
+ * @param :game_over_flag：int类型标志（0=游戏继续，1=游戏终止）
+ * @param :restart_flag：int类型标志（0=不重开，1=玩家请求重开）
+ * @param :quit_flag：int类型标志（0=不退出，1=玩家请求退出游戏返回主界面）
  * @return :无
  */
 
-void Game_Loop(void);
+void Game_Loop(int& game_over_flag, int& restart_flag, int& quit_flag);
 
 /**
  * @biref :结束游戏
@@ -71,4 +73,16 @@ void Game_Map(int random_num);
  */
 
 void Game_SidebarData(void);
+
+// 函数声明：生成1-3的随机地图编号
+void GenerateRandomMap(void);
+
+void DrawGameOver(void);
+
+// 函数声明：游戏主循环逻辑（每帧执行一次）
+// 参数说明：
+// game_over_flag：int类型标志（0=游戏继续，1=游戏终止）
+// restart_flag：int类型标志（0=不重开，1=玩家请求重开）
+// quit_flag：int类型标志（0=不退出，1=玩家请求退出游戏返回主界面）
+
 #endif

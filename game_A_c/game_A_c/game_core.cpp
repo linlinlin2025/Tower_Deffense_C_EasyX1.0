@@ -24,8 +24,6 @@ Enemy_BasePos Enemy_BasePosMap3[20] = {140,20,700,20,60,60,100,60,740,60,780,60,
 
 void Game_Init()
 {
-	setbkcolor(RGB(237, 231, 216));
-	cleardevice();//用白色清屏
 
 	setlinecolor(BLACK);//设置线条颜色为黑色
 	setlinestyle(PS_SOLID, 2);//设置线条为实线，宽度为3
@@ -51,14 +49,50 @@ void Game_Init()
 }
 /**
  * @biref :游戏主循环
- * @details :处理输入→调用各模块更新→调用绘制函数→控制帧率 
- * @param :无
+ * @details :处理输入→调用各模块更新→调用绘制函数→控制帧率
+ * @param :game_over_flag：int类型标志（0=游戏继续，1=游戏终止）
+ * @param :restart_flag：int类型标志（0=不重开，1=玩家请求重开）
+ * @param :quit_flag：int类型标志（0=不退出，1=玩家请求退出游戏返回主界面）
  * @return :无
  */
 
-void Game_Loop()
-{
+void Game_Loop(int& game_over_flag, int& restart_flag, int& quit_flag)
+{ 
+	 Sleep(16); // 帧率控制
 
+    ExMessage game_msg;
+    while (peekmessage(&game_msg, EX_MOUSE | EX_KEY)) {
+		cout << "[消息捕获] 收到消息：类型=" << game_msg.message
+			<< " | 鼠标X=" << game_msg.x << " | 鼠标Y=" << game_msg.y << endl;
+        if (game_msg.message == WM_KEYDOWN) {
+            switch (game_msg.vkcode) {
+                case VK_ESCAPE: // ESC退出
+                    quit_flag = 1;
+                    game_over_flag = 1;
+                    break;
+                case 'R': // R重开
+                    restart_flag = 1;
+                    game_over_flag = 1;
+                    break;
+            }
+        }
+
+        // 按钮检测
+		if (game_msg.message == WM_LBUTTONDOWN) {
+			// 先判断退出按钮（700,50 ~ 780,100）
+			if (game_msg.x >= 860 && game_msg.x <= 940 && game_msg.y >= 140 && game_msg.y <= 190) {
+				quit_flag = 1;
+				game_over_flag = 1;
+			}
+			// 再判断重开按钮（700,120 ~ 780,170）
+			else if (game_msg.x >= 860 && game_msg.x <= 940 && game_msg.y >= 200 && game_msg.y <= 250) {
+				restart_flag = 1;
+				game_over_flag = 1;
+			}
+		}
+    }
+
+    // 游戏逻辑（可扩展）
 }
 
 /**
@@ -236,5 +270,38 @@ void Game_SidebarData()
 	outtextxy(860, 50, Game_CoinStr);
 	outtextxy(860, 80, CurrentHPStr);
 	outtextxy(860, 110, Current_LevelStr);
+
 	//数据显示部分后续补充
+
+	// 绘制悬浮按钮
+	setfillcolor(RGB(255, 99, 71));
+	fillroundrect(860, 140, 940, 190, 10, 10);
+	settextcolor(RGB(255, 255, 255));
+	settextstyle(16, 0, _T("微软雅黑"));
+	outtextxy(870, 155, _T("退出游戏"));
+
+	setfillcolor(RGB(60, 179, 113));
+	fillroundrect(860, 200, 940, 250, 10, 10);
+	outtextxy(870, 215, _T("再来一局"));
+}
+
+// 生成随机地图（新增：方便再来一局时重新生成）
+void GenerateRandomMap() {
+	// 仅生成1-3的随机数
+	random_num = rand() % 3 + 1;
+}
+
+// 绘制游戏结束界面（需你补充实现，新增：示例逻辑）
+// 你需要在game_rule.h/game_core.h中声明，或直接在这里实现绘制“再来一局”按钮
+void DrawGameOver() {
+	// 示例：绘制“再来一局”按钮（坐标可根据你的界面调整）
+	setfillcolor(RGB(255, 192, 203));
+	fillroundrect(280, 300, 560, 400, 20, 20); // 圆角矩形按钮
+	settextcolor(RGB(0, 0, 0));
+	settextstyle(30, 0, _T("微软雅黑"));
+	outtextxy(350, 320, _T("再来一局")); // 按钮文字
+
+	// 示例：绘制“退出游戏”按钮
+	fillroundrect(280, 420, 560, 520, 20, 20);
+	outtextxy(350, 440, _T("退出游戏"));
 }
