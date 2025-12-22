@@ -62,8 +62,7 @@ void Game_Loop(int& game_over_flag, int& restart_flag, int& quit_flag)
 
     ExMessage game_msg;
     while (peekmessage(&game_msg, EX_MOUSE | EX_KEY)) {
-		cout << "[消息捕获] 收到消息：类型=" << game_msg.message
-			<< " | 鼠标X=" << game_msg.x << " | 鼠标Y=" << game_msg.y << endl;
+	
         if (game_msg.message == WM_KEYDOWN) {
             switch (game_msg.vkcode) {
                 case VK_ESCAPE: // ESC退出
@@ -93,6 +92,10 @@ void Game_Loop(int& game_over_flag, int& restart_flag, int& quit_flag)
     }
 
     // 游戏逻辑（可扩展）
+	// ********** 你的游戏主逻辑写在这里 **********
+    // 比如：玩家操作、碰撞检测、敌人AI等
+    // 当满足游戏结束条件时，调用TriggerGameOver()
+    // 示例：if (玩家生命值 <= 0) { TriggerGameOver(); }
 }
 
 /**

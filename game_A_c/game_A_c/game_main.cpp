@@ -59,15 +59,15 @@ int main() {
 
     while (true) { // 进入游戏死循环，通过状态控制退出
         switch (game_state) {
-            // 状态1：主界面（未点击开始游戏）
-        case STATE_MAIN_MENU:
+            
+        case STATE_MAIN_MENU:// 状态1：主界面（未点击开始游戏）
             if (peekmessage(&msg, EX_MOUSE)) {
                 // 点击“开始游戏”按钮
-                if ((msg.message == WM_LBUTTONDOWN) && msg.x >= 280 && msg.x <= 560 && msg.y >= 200 && msg.y <= 300) {
+                if ((msg.message == WM_LBUTTONDOWN) && msg.x >= width / 3 && msg.x <= width / 3+280 && msg.y >= height / 3 && msg.y <= height / 3+100) {
                     ResetGame(); // 调用重置游戏,切换游戏状态
                 }
                 // 点击“游戏规则”按钮
-                else if ((msg.message == WM_LBUTTONDOWN) && msg.x >= 280 && msg.x <= 560 && msg.y >= 380 && msg.y <= 480) {
+                else if ((msg.message == WM_LBUTTONDOWN) && msg.x >= width / 3 && msg.x <= width / 3+280 && msg.y >= height * 19 / 30 && msg.y <= height * 19 / 30+100) {
                     cleardevice();
                     DrawText2();
                     int is_Return = 0;
@@ -85,13 +85,9 @@ int main() {
             }
             break;
 
-            // 状态2：游戏运行中
-        case STATE_GAME_PLAYING:
+           
+        case STATE_GAME_PLAYING: // 状态2：游戏运行中
 		{//加入大括号，限定变量作用域，防止初始化报错
-            // ********** 你的游戏主逻辑写在这里 **********
-            // 比如：玩家操作、碰撞检测、敌人AI等
-            // 当满足游戏结束条件时，调用TriggerGameOver()
-            // 示例：if (玩家生命值 <= 0) { TriggerGameOver(); 
             int game_over_flag = 0; int restart_flag = 0; int quit_flag = 0;
             // 游戏帧循环：持续执行直到 game_over_flag 变为 1
             while (game_over_flag == 0) {
@@ -105,10 +101,7 @@ int main() {
                         goto GAME_EXIT;
                     }
                 }
-            }
-
-      
-            if (restart_flag == 1) { // 若 Game_Loop 中标记了“重开”
+            }if (restart_flag == 1) { // 若 Game_Loop 中标记了“重开”
                 ResetGame(); // 执行重开逻辑
             }
             else if (quit_flag == 1) { // 若 Game_Loop 中标记了“退出”
