@@ -46,13 +46,8 @@ typedef struct {
 	int score_reward[ENEMY_GRADE_NUM];//不同等级的得分
 	int money_reward[ENEMY_GRADE_NUM];////不同等级的敌人的钱
 	COLORREF color[ENEMY_GRADE_NUM];////不同等级的颜色
-}enemy_base;/*敌人基础信息结构体*/
+}Enemy_base;/*敌人基础信息结构体*/
 
-
-//typedef struct {
-//	int x;         /*敌人初始坐标*/
-//	int y;
-//}Enemy_base;
 
 typedef struct {
 	int id;  /*敌人编号*/
